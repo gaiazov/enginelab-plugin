@@ -28,5 +28,10 @@
 *.out
 *.app
 **/Debug/**
+**/Release/**
 *.vcxproj.filters
+*.vcxproj.user
 *.VC.db
+*.suo
+*.opensdf
+*.sdf

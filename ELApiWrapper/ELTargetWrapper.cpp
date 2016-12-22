@@ -32,7 +32,18 @@ DWORD ELTargetWrapper::InterfaceVersion()
 ELModelWrapper^ ELTargetWrapper::Modeler()
 {
 	pELModeler _model;
-	this->_target->Modeler(&_model);
+	DWORD status = this->_target->Modeler(&_model);
+	if (status == DS_SUCCESS) {
+		return gcnew ELModelWrapper((IntPtr)_model);
+	}
+	return nullptr;
+}
 
-	return gcnew ELModelWrapper((IntPtr)_model);
+ELGenericInfoListWrapper^ ELTargetWrapper::InfoList(TARGETINFO type) {
+	pELGenericInfoList list = NULL;
+	DWORD status = this->_target->InfoList(type, &list);
+	if (status == DS_SUCCESS) {
+		return gcnew ELGenericInfoListWrapper(list);
+	}
+	return nullptr;
 }

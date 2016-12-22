@@ -1,6 +1,7 @@
 #pragma once
 #include "../ELPlugin/api.h"
 #include "ELModelWrapper.h"
+#include "ELGenericInfoListWrapper.h"
 
 using namespace System;
 
@@ -12,6 +13,7 @@ public:
 	String^ GetName();
 	DWORD InterfaceVersion();
 	ELModelWrapper^ Modeler();
+	ELGenericInfoListWrapper^ ELTargetWrapper::InfoList(TARGETINFO on);
 
 private:
 	pELTarget _target;

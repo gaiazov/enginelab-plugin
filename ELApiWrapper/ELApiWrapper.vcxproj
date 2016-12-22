@@ -74,6 +74,10 @@
     <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)LIB\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(DXSDK_DIR)LIB\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -123,12 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ELGenericInfoListWrapper.cpp" />
+    <ClCompile Include="ELItemTypeWrapper.cpp" />
     <ClCompile Include="ELModelWrapper.cpp" />
     <ClCompile Include="ELTargetWrapper.cpp" />
+    <ClCompile Include="ELItemWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ELGenericInfoListWrapper.h" />
+    <ClInclude Include="ELItemTypeWrapper.h" />
     <ClInclude Include="ELModelWrapper.h" />
     <ClInclude Include="ELTargetWrapper.h" />
+    <ClInclude Include="ELItemWrapper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

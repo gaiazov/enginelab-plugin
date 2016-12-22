@@ -1,5 +1,7 @@
 #pragma once
 #include "../ELPlugin/api.h"
+#include "ELItemTypeWrapper.h"
+#include "ELItemWrapper.h"
 
 using namespace System;
 
@@ -10,6 +12,7 @@ public:
 	virtual ~ELModelWrapper();
 
 	DWORD NextAvailableChannelNumber();
+	ELItemWrapper^ CreateNoop(String^ name, ELItemTypeWrapper^ type);
 
 private:
 	pELModeler _model;

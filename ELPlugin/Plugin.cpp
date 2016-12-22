@@ -34,7 +34,10 @@ extern "C" __declspec(dllexport) void GetPlugInMenuString(char **menu_string, UI
 
 extern "C" __declspec(dllexport) void HostReady(pELHost host, pELLayout layout) { }
 
-extern "C" __declspec(dllexport) void MenuClicked(WORD menu_id) { }
+extern "C" __declspec(dllexport) void MenuClicked(WORD menu_id) {
+	ELPlugin::Implementation impl;
+	impl.MenuClicked(menu_id);
+}
 
 extern "C" __declspec(dllexport) void TargetConnected(pELTarget target) {
 	ELPlugin::Implementation impl;
