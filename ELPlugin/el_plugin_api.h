@@ -3676,6 +3676,35 @@ DECLARE_INTERFACE_(ELNoOperationItem, ELItem) {
 }; // ELNoOperationItem
 typedef ELNoOperationItem *pELNoOperationItem;
 
+#ifndef EL_OUTPUT_TYPE_VERSION
+# define EL_OUTPUT_TYPE_VERSION 1
+#endif
+# undef INTERFACE
+# define INTERFACE ELOutputType
+DECLARE_INTERFACE(ELOutputType) {
+	STDMETHOD_(DWORD, InterfaceVersion)(THIS) PURE;
+	STDMETHOD_(BYTE, OutputType)(THIS) PURE;
+	STDMETHOD_(void, SetOutputType)(THIS_ BYTE output_type) PURE;
+}; // ELCANPacketItem
+typedef ELOutputType *pELOutputType;
+
+#ifndef EL_THERMISTOR_ITEM_VERSION
+# define EL_THERMISTOR_ITEM_VERSION 1
+#endif
+# undef INTERFACE
+# define INTERFACE ELThermistorItem
+DECLARE_INTERFACE_(ELThermistorItem, ELItem) {
+	STDMETHOD_(DWORD, InterfaceVersion)(THIS) PURE;
+	STDMETHOD_(void, Release)(THIS) PURE;
+	STDMETHOD_(pELItemType, Type)(THIS) PURE;
+	STDMETHOD_(WORD, Channel)(THIS) PURE;
+	STDMETHOD_(const char *, Name)(THIS) PURE;
+	STDMETHOD_(pELItemHeader, Header)(THIS) PURE;
+
+	STDMETHOD_(pELOutputType, OutputType)(THIS) PURE;
+}; // ELCANPacketItem
+typedef ELThermistorItem *pELThermistorItem;
+
 #ifndef EL_CAN_PACKET_ENTRY_VERSION
 # define EL_CAN_PACKET_ENTRY_VERSION 1
 #endif

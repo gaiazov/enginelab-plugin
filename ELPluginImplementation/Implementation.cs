@@ -6,6 +6,7 @@ namespace ELPlugin
     {
         private static ELModelWrapper _model;
         private static ELGenericInfoListWrapper _itemTypes;
+        private static ELGenericInfoListWrapper _thermistorTypes;
 
         public static string GetPlugInName()
         {
@@ -24,12 +25,21 @@ namespace ELPlugin
             Console.WriteLine(_model.NextAvailableChannelNumber());
 
             _itemTypes = target.InfoList(15); // TARGETINFO_ITEM_TYPES
+            _thermistorTypes = target.InfoList(9); //TARGETINFO_THERMISTOR_OUTPUT_TYPES
         }
 
         public static void MenuClicked(uint menuId)
         {
-            var type = _itemTypes.InfoItemType(0); // ITEMTYPE_NONE
-            var item = _model.CreateNoop("Test", type);
+            {
+                //var type = _itemTypes.InfoItemType(0); // ITEMTYPE_NONE
+                //var item = _model.CreateNoop("Test", type);
+            }
+
+            {
+                var type = _itemTypes.Info(17); // ITEMTYPE_THERMISTOR
+                var thermistorType = _thermistorTypes.Info(3); //TS_THERMISTOR_ITEM_MODIFIABLE__OUTPUT_TYPE_CLT_1GDSM_DEGC
+                var item = _model.CreateThermistor("Test", type, thermistorType);
+            }
         }
     }
 }

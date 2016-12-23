@@ -128,14 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ELGenericInfoListWrapper.cpp" />
-    <ClCompile Include="ELItemTypeWrapper.cpp" />
+    <ClCompile Include="ELGenericInfoWrapper.cpp" />
     <ClCompile Include="ELModelWrapper.cpp" />
     <ClCompile Include="ELTargetWrapper.cpp" />
     <ClCompile Include="ELItemWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ELGenericInfoListWrapper.h" />
-    <ClInclude Include="ELItemTypeWrapper.h" />
+    <ClInclude Include="ELGenericInfoWrapper.h" />
     <ClInclude Include="ELModelWrapper.h" />
     <ClInclude Include="ELTargetWrapper.h" />
     <ClInclude Include="ELItemWrapper.h" />
