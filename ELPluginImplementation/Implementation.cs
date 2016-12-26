@@ -24,22 +24,22 @@ namespace ELPlugin
 
             Console.WriteLine(_model.NextAvailableChannelNumber());
 
-            _itemTypes = target.InfoList(15); // TARGETINFO_ITEM_TYPES
-            _thermistorTypes = target.InfoList(9); //TARGETINFO_THERMISTOR_OUTPUT_TYPES
+            _itemTypes = target.InfoList((uint)Constants.TargetType.ITEM_TYPES);
+            _thermistorTypes = target.InfoList((uint)Constants.TargetType.THERMISTOR_OUTPUT_TYPES);
         }
 
         public static void MenuClicked(uint menuId)
         {
-            {
-                //var type = _itemTypes.InfoItemType(0); // ITEMTYPE_NONE
-                //var item = _model.CreateNoop("Test", type);
-            }
+            var item = _model.NewItem("Test", _itemTypes.Info((uint)Constants.ItemType.THERMISTOR));
 
-            {
-                var type = _itemTypes.Info(17); // ITEMTYPE_THERMISTOR
-                var thermistorType = _thermistorTypes.Info(3); //TS_THERMISTOR_ITEM_MODIFIABLE__OUTPUT_TYPE_CLT_1GDSM_DEGC
-                var item = _model.CreateThermistor("Test", type, thermistorType);
-            }
+            item.AddConstantChannel(0, 1234);
+            item.AddConstantChannel(1, 2490);
+
+            // todo: set thermistor output type
+            var thermistorType = _thermistorTypes.Info((uint)Constants.ThermistorOutputType.CLT_1GDSM_DEGC);
+
+            var status = (Constants.Status)_model.CreateItem(item);
+            Console.WriteLine(status);
         }
     }
 }

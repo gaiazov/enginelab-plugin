@@ -18,47 +18,22 @@ DWORD ELModelWrapper::NextAvailableChannelNumber()
 	return this->_model->NextAvailableChannelNumber();
 }
 
-ELItemWrapper^ ELModelWrapper::CreateNoop(String^ name, ELGenericInfoWrapper^ type) {
-	pELNoOperationItem item = NULL;
-
-	IntPtr nameStrPtr = Marshal::StringToHGlobalAnsi(name);
-	char* nameStr = static_cast<char*>(nameStrPtr.ToPointer());
-
-	pELGenericInfo pType = type->Get(); //ITEMTYPE_NONE
-
-	DWORD status = this->_model->NewItem((pELItemType)pType, nameStr, (pELItem*)&item);
-	if (status == DS_SUCCESS) {
-		status = this->_model->CreateItem(item, NULL);
-		if (status == DS_SUCCESS) {
-			return gcnew ELItemWrapper(item);
-		}
-		return nullptr;
-	}
-	return nullptr;
+DWORD ELModelWrapper::CreateItem(ELItemWrapper^ item) {
+	return this->_model->CreateItem(item->Get(), NULL);
 }
 
-ELItemWrapper^ ELModelWrapper::CreateThermistor(String^ name, ELGenericInfoWrapper^ type, ELGenericInfoWrapper^ outputType) {
+
+ELItemWrapper^ ELModelWrapper::NewItem(String^ name, ELGenericInfoWrapper^ type) {
 	pELItem item = NULL;
 
 	IntPtr nameStrPtr = Marshal::StringToHGlobalAnsi(name);
 	char* nameStr = static_cast<char*>(nameStrPtr.ToPointer());
 
-	pELGenericInfo pType = type->Get(); //ITEMTYPE_THERMISTOR
-	pELGenericInfo info = outputType->Get();
-	const char* thermistor_name = info->Name();
+	pELGenericInfo pType = type->Get();
 
 	DWORD status = this->_model->NewItem((pELItemType)pType, nameStr, (pELItem*)&item);
 	if (status == DS_SUCCESS) {
-		pELItemInputs inputs = item->Header()->Inputs();
-
-		inputs->AddConstant(0, 1234);
-		inputs->AddConstant(0, 2490);
-		
-		status = this->_model->CreateItem(item, NULL);
-		if (status == DS_SUCCESS) {
-			return gcnew ELItemWrapper(item);
-		}
-		return nullptr;
+		return gcnew ELItemWrapper(item);
 	}
 	return nullptr;
 }

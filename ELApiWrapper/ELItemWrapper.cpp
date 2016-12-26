@@ -1,12 +1,9 @@
 #include "ELItemWrapper.h"
 
-
-
 ELItemWrapper::ELItemWrapper(pELItem item)
 {
 	this->_item = item;
 }
-
 
 ELItemWrapper::~ELItemWrapper()
 {
@@ -21,4 +18,14 @@ String^ ELItemWrapper::Name() {
 
 WORD ELItemWrapper::Channel() {
 	return this->_item->Channel();
+}
+
+pELItem ELItemWrapper::Get() {
+	return this->_item;
+}
+
+UINT ELItemWrapper::AddConstantChannel(WORD channel, float constant) {
+	pELItemInputs inputs = this->_item->Header()->Inputs();
+
+	return inputs->AddConstant(channel, constant);
 }

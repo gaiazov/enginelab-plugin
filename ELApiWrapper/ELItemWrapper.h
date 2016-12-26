@@ -12,6 +12,9 @@ public:
 	String^ Name();
 	WORD Channel();
 
+	pELItem Get();
+	UINT ELItemWrapper::AddConstantChannel(WORD channel, float constant);
+
 private:
 	pELItem _item;
 };

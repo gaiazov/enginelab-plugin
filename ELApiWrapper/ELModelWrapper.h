@@ -12,8 +12,9 @@ public:
 	virtual ~ELModelWrapper();
 
 	DWORD NextAvailableChannelNumber();
-	ELItemWrapper^ CreateNoop(String^ name, ELGenericInfoWrapper^ type);
-	ELItemWrapper^ CreateThermistor(String^ name, ELGenericInfoWrapper^ type, ELGenericInfoWrapper^ outputType);
+
+	DWORD CreateItem(ELItemWrapper^ item);
+	ELItemWrapper^ NewItem(String^ name, ELGenericInfoWrapper^ type);
 
 private:
 	pELModeler _model;
